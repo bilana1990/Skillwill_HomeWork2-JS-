@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SKILLWILL home work 2</title>
+  </head>
+  <body>
+    <script>
+      // მოცემულია მასივი [{name: 'Temo', age: 25},
+      // {name: 'Lasha', age: 21}, {name: 'Ana', age: 28}]
+      let users = [
+        {
+          name: "Temo",
+          age: 25,
+        },
+        {
+          name: "Lasha",
+          age: 21,
+        },
+        {
+          name: "Ana",
+          age: 28,
+        },
+      ];
+      //   დაწერე ფუნქცია, რომელიც პარამეტრად
+      // მიიღებს user - ების მასივს და დააბრუნებს
+      // ყველაზე პატარა ასაკის მქონე ადამიანის
+      // სახელს
+      function getYoungestUserName(users) {
+        if (users.length === 0) {
+          return null; // თუ მასივი ცარიელია, დააბრუნებს null-ს
+        }
+
+        let youngestUser = users[0];
+
+        for (let i = 1; i < users.length; i++) {
+          if (users[i].age < youngestUser.age) {
+            youngestUser = users[i];
+          }
+        }
+
+        return youngestUser.name;
+      }
+
+      console.log(getYoungestUserName(users));
+
+      //       დაწერე ფუნქცია, რომელიც პარამეტრად
+      // მიიღებს user ობიექტს და დააბრუნებს
+      // იგივე მნიშვნელობების მქონე ახალ
+      // (განსხვავებულ) ობიექტს
+
+      function userObject(users) {
+        let newUsers = {
+          name: "Shota",
+          age: 44,
+        };
+        return newUsers.age;
+      }
+
+      console.log(userObject(users));
+
+      //       დაწერე პროგრამა, სადაც ორი a და b
+      // მომხმარებლები აგორებენ კამათელს
+      // მანამ, სანამ არ გაგორდება, რომელიც
+      // უფრო ნაკლებ ცდაში გააგორებს სამიანს ის
+      // არის გამარჯვებული
+
+      function rollDice() {
+        return Math.floor(Math.random() * 6) + 1;
+      }
+
+      function playGame() {
+        let aTries = 0;
+        let bTries = 0;
+        let aRolledThree = false;
+        let bRolledThree = false;
+
+        while (!aRolledThree && !bRolledThree) {
+          // Player A rolls the dice
+          aTries++;
+          if (rollDice() === 3) {
+            aRolledThree = true;
+          }
+
+          // Player B rolls the dice
+          bTries++;
+          if (rollDice() === 3) {
+            bRolledThree = true;
+          }
+        }
+
+        if (aRolledThree && bRolledThree) {
+          if (aTries < bTries) {
+            console.log(`Player A wins in ${aTries} tries!`);
+          } else if (bTries < aTries) {
+            console.log(`Player B wins in ${bTries} tries!`);
+          } else {
+            console.log(
+              `It's a tie! Both players rolled a 3 in ${aTries} tries!`
+            );
+          }
+        } else if (aRolledThree) {
+          console.log(`Player A wins in ${aTries} tries!`);
+        } else {
+          console.log(`Player B wins in ${bTries} tries!`);
+        }
+      }
+
+      playGame();
+    </script>
+  </body>
+</html>
